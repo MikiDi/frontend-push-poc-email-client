@@ -5,12 +5,13 @@ import ObjectProxy from '@ember/object/proxy';
 import { inject as service } from '@ember/service';
 import fetch from 'fetch'
 import { task } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 
 export default class PollingServiceService extends Service {
   @service store;
 
-  monitoredResources = null
-  pollInterval = 1000;
+  @tracked monitoredResources = null;
+  pollInterval = 4000;
 
   constructor () {
     super(...arguments);
@@ -77,7 +78,7 @@ export default class PollingServiceService extends Service {
   unregister (resource) {
     const r = this.monitoredResources.findBy('resource', resource);
     if (r) {
-      this.monitoredResources.popObject(r);
+      this.monitoredResources.removeObject(r);
     }
   }
 
