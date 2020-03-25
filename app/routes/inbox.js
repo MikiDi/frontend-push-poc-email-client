@@ -9,5 +9,8 @@ export default class InboxRoute extends Route {
       sort: '-sent-date'
     });
   }
+
+  willDestroy () {
+    this.pollingService.unregister(this.currentModel);
   }
 }
