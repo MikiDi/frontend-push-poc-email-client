@@ -48,7 +48,7 @@ export default class PollingServiceService extends Service {
 
   async pollQuery (query, modelName) {
     const adapter = this.store.adapterFor(modelName);
-    const path = adapter.urlForQuery(...arguments);
+    const path = adapter.urlForQuery(...arguments); // Doesn't take care of query params. See https://github.com/emberjs/data/issues/3895
     const params = new URLSearchParams(Object.entries(query)); // Nested query params not allowed
     const url = new URL(path, adapter.host || window.location.origin);
     url.search = params.toString();
