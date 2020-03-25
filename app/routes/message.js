@@ -9,8 +9,6 @@ export default class MessageRoute extends Route {
   }
 
   deactivate () {
-    console.log('deactivate');
-    debugger;
     this.pollingService.unregister(this.currentModel);
   }
 }
