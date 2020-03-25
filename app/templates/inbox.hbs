@@ -19,7 +19,7 @@
     <tr>
       <td><time>{{email.sentDate}}</time></td>
       <td><a href={{email.from}}>{{email.from}}</a></td>
-      <td>{{email.subject}}</td>
+      <td><LinkTo @route="message" @model={{email.id}}>{{email.subject}}</LinkTo></td>
     </tr>
     {{/each}}
   </tbody>
