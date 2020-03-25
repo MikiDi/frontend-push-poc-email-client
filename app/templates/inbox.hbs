@@ -1,3 +1,11 @@
+<div>
+  <button
+    type="button"
+    {{on "click" this.sendMail}}
+  >
+    Spam me!
+  </button>
+</div>
 {{#each this.model as |email|}}
   <a href={{email.from}}>{{email.from}}</a>
   <h2>{{email.subject}}</h2>
