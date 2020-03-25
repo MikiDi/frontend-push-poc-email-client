@@ -6,7 +6,21 @@
     Spam me!
   </button>
 </div>
-{{#each this.model as |email|}}
-  <a href={{email.from}}>{{email.from}}</a>
-  <h2>{{email.subject}}</h2>
-{{/each}}
+<table>
+<thead>
+  <tr>
+    <th scope="col">Sent at</th>
+    <th scope="col">From</th>
+    <th scope="col">Subject</th>
+  </tr>
+</thead>
+  <tbody>
+    {{#each this.model as |email|}}
+    <tr>
+      <td><time>{{email.sentDate}}</time></td>
+      <td><a href={{email.from}}>{{email.from}}</a></td>
+      <td>{{email.subject}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
