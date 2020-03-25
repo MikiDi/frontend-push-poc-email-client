@@ -10,7 +10,7 @@ export default class InboxRoute extends Route {
     });
   }
 
-  willDestroy () {
+  deactivate () {
     this.pollingService.unregister(this.currentModel);
   }
 }
