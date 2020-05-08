@@ -2,13 +2,13 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class MessageRoute extends Route {
-  @service pollingService;
+  @service pollUpdate;
 
   model (params) {
-    return this.pollingService.findRecord('email', params.message_id);
+    return this.pollUpdate.findRecord('email', params.message_id);
   }
 
   deactivate () {
-    this.pollingService.unregister(this.currentModel);
+    this.pollUpdate.unregister(this.currentModel);
   }
 }

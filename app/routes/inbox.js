@@ -2,15 +2,15 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class InboxRoute extends Route {
-  @service pollingService;
+  @service liveUpdate;
 
   model () {
-    return this.pollingService.query('email', {
+    return this.liveUpdate.query('email', {
       sort: '-sent-date'
     });
   }
 
   deactivate () {
-    this.pollingService.unregister(this.currentModel);
+    this.liveUpdate.unregister(this.currentModel);
   }
 }
