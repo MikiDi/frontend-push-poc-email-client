@@ -7,20 +7,30 @@
   </button>
 </div>
 <table>
-<thead>
-  <tr>
-    <th scope="col">Sent at</th>
-    <th scope="col">From</th>
-    <th scope="col">Subject</th>
-  </tr>
-</thead>
+  <thead>
+    <tr>
+      <th scope="col">Sent at</th>
+      <th scope="col">Read</th>
+      <th scope="col">From</th>
+      <th scope="col">Subject</th>
+    </tr>
+  </thead>
   <tbody>
     {{#each this.model as |email|}}
-    <tr>
-      <td><time>{{email.sentDate}}</time></td>
-      <td><a href={{email.from}}>{{email.from}}</a></td>
-      <td><LinkTo @route="message" @model={{email.id}}>{{email.subject}}</LinkTo></td>
-    </tr>
+      <tr>
+        <td><time>{{format-date email.sentDate}}</time></td>
+        <td>
+          {{if email.isRead "X" "O"}}
+          <button
+            type="button"
+            {{on "click" (fn this.toggleReadStatus email)}}
+          >
+            toggle
+          </button>
+        </td>
+        <td><a href={{email.from}}>{{email.from}}</a></td>
+        <td><LinkTo @route="message" @model={{email.id}}>{{email.subject}}</LinkTo></td>
+      </tr>
     {{/each}}
   </tbody>
 </table>
